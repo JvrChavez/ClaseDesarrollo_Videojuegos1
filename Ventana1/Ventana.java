@@ -57,7 +57,7 @@ public class Ventana extends JFrame{
         };
         btn1.addActionListener(listener);
     }//end initvalues
-    public void escucharButton(){
+    /*public void escucharButton(){
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,5 +71,5 @@ public class Ventana extends JFrame{
         h.setTime(500);
         Thread t1=new Thread(h);
         t1.start();
-    }//end incrementar
+    }//end incrementar*/
 }

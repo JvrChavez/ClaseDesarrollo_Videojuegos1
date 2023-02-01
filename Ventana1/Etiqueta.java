@@ -19,8 +19,7 @@ public class Etiqueta extends JLabel implements Runnable{
         }
         if(name=="Hilo 1 : "){//Activa el boton solo hasta que acabe el primer hilo
             btn1.setEnabled(true);
-        }
-        
+        }        
     }
     public void setTime(Integer time){
         this.time=time;
