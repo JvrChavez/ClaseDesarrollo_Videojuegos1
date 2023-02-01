@@ -7,7 +7,7 @@ public class Etiqueta extends JLabel implements Runnable{
     public Etiqueta(String txt1){
         setText(txt1);
     }
-    public void run(){        
+    public void run(){
         for (int i = 1; i <=10; i++) {
             btn1.setEnabled(false);
             try {

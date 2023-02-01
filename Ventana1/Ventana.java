@@ -30,7 +30,7 @@ public class Ventana extends JFrame{
         btn1.setFont(font1);;
         btn1.setBounds(50,150,200,25);
         add(btn1);
-
+        //Especificaciones de mi ventana
         setTitle("Mi Ventana");
         setSize(300,300);
         setResizable(false);
@@ -39,7 +39,7 @@ public class Ventana extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-        //Codigo del profesor / Tarea de los 2 hilos
+        //Accionador de los botones
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae1){
                 System.out.println("Me diste click");                
