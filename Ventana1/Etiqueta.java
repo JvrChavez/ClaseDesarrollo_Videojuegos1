@@ -21,7 +21,7 @@ public class Etiqueta extends JLabel implements Runnable{
             btn1.setEnabled(true);
         }        
     }
-    public void setTime(Integer time){
+    /*public void setTime(Integer time){
         this.time=time;
     }
     public void setButton(JButton btn1){
@@ -29,5 +29,5 @@ public class Etiqueta extends JLabel implements Runnable{
     }
     public void setName(String name){
         this.name=name;
-    }
+    }*/
 }

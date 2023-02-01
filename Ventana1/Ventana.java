@@ -44,14 +44,14 @@ public class Ventana extends JFrame{
             public void actionPerformed(ActionEvent ae1){
                 System.out.println("Me diste click");                
                 Thread t1=new Thread(texto1);
-                texto1.setTime(1000);
-                texto1.setButton(btn1);
-                texto1.setName("Hilo 1 : ");
+                texto1.time=(1000);
+                texto1.btn1=(btn1);
+                texto1.name=("Hilo 1 : ");
                 t1.start();
                 Thread t2=new Thread(texto2);
-                texto2.setTime(500);
-                texto2.setButton(btn1);
-                texto2.setName("Hilo 2 : ");
+                texto2.time=(800);
+                texto2.btn1=(btn1);
+                texto2.name=("Hilo 2 : ");
                 t2.start();
             }
         };
