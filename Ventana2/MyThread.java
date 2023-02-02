@@ -43,7 +43,7 @@ public class MyThread extends Thread {
                             y1=1;
                         }
                     }                    
-                }
+                }//end if
             } catch (Exception e) {
                 // TODO: handle exception
             }
