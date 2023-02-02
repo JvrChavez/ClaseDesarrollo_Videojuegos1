@@ -10,12 +10,12 @@ public class Ventana extends JFrame {
     }
     private void initValues(){
         Font font1=new Font("Arial",1,22);
-        JLabel texto1=new JLabel ("Hilo 1 : ");
+        JLabel texto1=new JLabel ("Fuimonos");
         texto1.setFont(font1);
         JButton btnStart=new JButton("Start");
 
-        texto1.setBounds(10,10,120,25);
-        btnStart.setBounds(10,40,75,25);
+        texto1.setBounds(90,10,120,25);
+        btnStart.setBounds(112,40,75,25);
         ActionListener listener = new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 MyThread t=new MyThread();
@@ -24,7 +24,7 @@ public class Ventana extends JFrame {
                 t.start();
             }
         };
-
+        //Agregamos label y button
         add(texto1);
         add(btnStart);
         //Especificaciones de mi ventana
