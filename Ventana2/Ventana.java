@@ -26,12 +26,21 @@ public class Ventana extends JFrame {
         Font font1=new Font("Arial",1,22);
         //JLabel texto1=new JLabel ("Fuimonos");
         texto1.setFont(font1);
+        LabelKey lkey=new LabelKey("0");
+        lkey.setFont(font1);
         JButton btnStart=new JButton("Start");
 
+        lkey.setFocusable(true);
+        btnStart.setFocusable(false);
+
         texto1.setBounds(1,1,276,168);
-        btnStart.setBounds(112,40,75,25);
+        lkey.setBounds(112,200,75,25);
+        btnStart.setBounds(112,230,75,25);
         ActionListener listener = new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                Thread tkey=new Thread(lkey);
+                tkey.start();
+
                 MyThread t=new MyThread();
                 t.btn=btnStart;
                 t.texto1=texto1;
@@ -40,6 +49,7 @@ public class Ventana extends JFrame {
         };
         //Agregamos label y button
         add(texto1);
+        add(lkey);
         add(btnStart);
         //Especificaciones de mi ventana
         setTitle("Mi Ventana");
