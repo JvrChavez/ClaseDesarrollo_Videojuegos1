@@ -23,6 +23,7 @@ public class Imagen extends JLabel implements Runnable{
                 Thread.sleep(50);
             } catch (Exception e) {
                 // TODO: handle exception
+                //weno
             }
         }//end for
     }//end run
