@@ -3,14 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Ventana extends JFrame{    
+public class Ventana extends JFrame{
     public Ventana(){
         initValues();
     }
+    
     private void initValues(){
         //Inicializar etiquetas
         JButton btnStart=new JButton("Start");
-        Imagen img1=new Imagen("images/mario1.png","images/mario2.png",50,40);
+        Imagen img1=new Imagen("images/mario1.png","images/mario2.png",40,40);
         Imagen img2=new Imagen("images/link1.png","images/link2.png",30,90);
         //Set Bounds
         btnStart.setBounds(10,10,75,25);
@@ -19,11 +20,15 @@ public class Ventana extends JFrame{
 
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                //Deshabilitar el boton
+                btnStart.setEnabled(false);
                 //Hilo mario
                 Thread tm=new Thread(img1);
+                img1.btnStart=(btnStart);
                 tm.start();
                 //Hilo link
                 Thread tl=new Thread (img2);
+                img2.btnStart=(btnStart);
                 tl.start();
             }
         };

@@ -5,6 +5,7 @@ public class Imagen extends JLabel implements Runnable{
     ImageIcon icon;
     String url,url2;
     int time, y;
+    JButton btnStart;
     //Constructor
     public Imagen(String url, String url2, Integer time,Integer y){
         this.url=url;
@@ -29,5 +30,8 @@ public class Imagen extends JLabel implements Runnable{
                 // TODO: handle exception
             }
         }//end for
+        if (y==40) {
+            btnStart.setEnabled(true);
+        }
     }//end run
 }
