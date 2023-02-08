@@ -5,6 +5,7 @@ public class Imagen extends JLabel implements Runnable{
     ImageIcon icon;
     String url,url2;
     int time, y;
+    //Constructor
     public Imagen(String url, String url2, Integer time,Integer y){
         this.url=url;
         this.url2=url2;
@@ -26,7 +27,6 @@ public class Imagen extends JLabel implements Runnable{
                 Thread.sleep(time);
             } catch (Exception e) {
                 // TODO: handle exception
-                //weno
             }
         }//end for
     }//end run
