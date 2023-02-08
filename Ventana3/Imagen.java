@@ -30,6 +30,7 @@ public class Imagen extends JLabel implements Runnable{
                 // TODO: handle exception
             }
         }//end for
+        //Habilitamos el boton cuando el hilo mal lento termine
         if (y==40) {
             btnStart.setEnabled(true);
         }
