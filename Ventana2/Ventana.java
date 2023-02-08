@@ -14,14 +14,13 @@ public class Ventana extends JFrame {
     }
     private void initValues() throws IOException{
         //Prueba Imagen
-        File file=new File("Ventana2/img/img_nave.png");
+        File file=new File("Ventana2/img/img_Nave.png");//En linux es a fuerzas la N mayusc.
+        System.out.print(file);
         BufferedImage bufferedImage = ImageIO.read(file);
         ImageIcon imageIcon=new ImageIcon(bufferedImage);
         JLabel texto1=new JLabel ();
         texto1.setIcon(imageIcon);
         //End Prueba Imagen
-
-
 
         Font font1=new Font("Arial",1,22);
         //JLabel texto1=new JLabel ("Fuimonos");
@@ -62,5 +61,4 @@ public class Ventana extends JFrame {
 
         btnStart.addActionListener(listener);
     }//end initValues
-    
 }
