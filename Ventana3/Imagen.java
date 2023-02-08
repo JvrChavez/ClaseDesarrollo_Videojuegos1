@@ -4,9 +4,12 @@ import javax.swing.*;
 public class Imagen extends JLabel implements Runnable{
     ImageIcon icon;
     String url,url2;
-    public Imagen(String url, String url2){
+    int time, y;
+    public Imagen(String url, String url2, Integer time,Integer y){
         this.url=url;
         this.url2=url2;
+        this.time=time;
+        this.y=y;
         icon=new ImageIcon(this.getClass().getResource(url));
         setIcon(icon);
     }
@@ -18,9 +21,9 @@ public class Imagen extends JLabel implements Runnable{
                 icon=new ImageIcon(this.getClass().getResource(url));
             }
             setIcon(icon);
-            setBounds(x,40,42,42);
+            setBounds(x,y,42,42);
             try {
-                Thread.sleep(50);
+                Thread.sleep(time);
             } catch (Exception e) {
                 // TODO: handle exception
                 //weno
