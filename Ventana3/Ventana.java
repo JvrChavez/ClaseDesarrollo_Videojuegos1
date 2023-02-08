@@ -11,8 +11,10 @@ public class Ventana extends JFrame{
     private void initValues(){
         JButton btnStart=new JButton("Start");
         Imagen img1=new Imagen("images/mario1.png","images/mario2.png");
+        Imagen img2=new Imagen("images/link1.png","images/link2.png");
     
         btnStart.setBounds(10,10,75,25);
+        img1.setBounds(10,40,42,42);
         img1.setBounds(10,40,42,42);
     
         ActionListener listener=new ActionListener(){
@@ -22,6 +24,8 @@ public class Ventana extends JFrame{
             }
         };
         btnStart.addActionListener(listener);
+
+        //valores ventana
         add(btnStart);
         add(img1);
         setTitle("Ventana #3");
