@@ -12,7 +12,10 @@ public class Ventana extends JFrame{
         //Inicializar etiquetas
         JButton btnStart=new JButton("Start");
         Imagen img1=new Imagen("images/mario1.png","images/mario2.png",40,40);
-        Imagen img2=new Imagen("images/link1.png","images/link2.png",30,90);
+        Imagen2 img2=new Imagen2("images/link1.png","images/link2.png");
+        //Focusable
+        img2.setFocusable(true);
+        btnStart.setFocusable(false);
         //Set Bounds
         btnStart.setBounds(10,10,75,25);
         img1.setBounds(10,40,42,42);
@@ -26,14 +29,18 @@ public class Ventana extends JFrame{
                 Thread tm=new Thread(img1);
                 img1.btnStart=(btnStart);
                 tm.start();
-                //Hilo link
+                //Hilo Link
+                Thread t2=new Thread(img2);
+                t2.start();
+                /*//Hilo link
                 Thread tl=new Thread (img2);
                 img2.btnStart=(btnStart);
-                tl.start();
+                tl.start();*/
             }
         };
+        //Listeners
         btnStart.addActionListener(listener);
-
+        img2.addKeyListener(img2);
         //Los ADD
         add(btnStart);
         add(img1);
