@@ -16,7 +16,7 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
     public void run(){
         posX=10;
         runStatus=true;
-        while(true){            
+        while(posX <250){            
             try {
                 Thread.sleep(50);
                 //Condicional brincar
