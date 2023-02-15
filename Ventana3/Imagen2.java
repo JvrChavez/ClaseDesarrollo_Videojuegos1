@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Imagen2 extends JLabel implements Runnable,KeyListener{
     private String url1,url2;
     private ImageIcon icon;
-    private int posX=10,posY=90;
+    private int posX=10,posY=90,aire=0;
     private boolean runStatus=false,correr=false,mover=false,brincar=false;
     public Imagen2(String url1,String url2){
         this.url1=url1;
@@ -20,7 +20,8 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
             try {
                 Thread.sleep(50);
                 //Condicional brincar
-                if(brincar){                    
+                if(brincar && aire<10){//aire limita el salto a 10 pixeles de longitud   
+                    aire++;          
                     posY=75;                    
                 }else{
                     posY=90;
@@ -62,6 +63,7 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
         }
         if ((ke.getKeyCode()==KeyEvent.VK_UP)) {
             brincar=false;
+            aire=0;
         }
     }
     public void animacionMovimiento(){        
