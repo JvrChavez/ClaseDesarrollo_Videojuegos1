@@ -29,19 +29,19 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
                 }                  
                 if (posX<151){
                     if (correr && right) {//Condicional right y correr
-                        posX+=5;                        
+                        posX+=9;                        
                         animacionDerecha();
                     }else if(right){
-                        posX++;
+                        posX+=5;
                         animacionDerecha();                        
                     }                    
                 }
                 if (posX>0){
                     if (correr && left) {//Condicional right y correr
-                        posX-=5;
+                        posX-=9;
                         animacionIzquierda();                        
                     }else if(left){
-                        posX--;
+                        posX-=5;
                         animacionIzquierda();                        
                     }                    
                 }                                                                   
@@ -65,8 +65,7 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
                 correr=true;                
             }
             if ((ke.getKeyCode()==KeyEvent.VK_UP)) {
-                brincar=true;                
-                System.out.println("brincar");
+                brincar=true;                                
             }        
         }        
     }

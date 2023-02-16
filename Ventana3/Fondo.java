@@ -18,9 +18,9 @@ public class Fondo extends JLabel implements Runnable,KeyListener{
             while(true){
                 Thread.sleep(50);
                 if (correr) {
-                    desplazarFondo(5);
+                    desplazarFondo(9);
                 }else{
-                    desplazarFondo(1);
+                    desplazarFondo(5);
                 }
                 
             }
