@@ -1,41 +1,41 @@
 package Ventana3;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class Ventana extends JFrame{
     public Ventana(){
         initValues();
-    }
-    
+    }    
     private void initValues(){
         //Inicializar etiquetas
         JButton btnStart=new JButton("Start");
-        Imagen img1=new Imagen("images/mario1.png","images/mario2.png",40,40);
-        Imagen2 img2=new Imagen2("images/link1.png","images/link2.png");
+        
+        //Imagen img1=new Imagen("images/mario1.png","images/mario2.png",40,40);
+        Imagen2 img2=new Imagen2("images/mario1.png","images/mario2.png","images/marioi1.png","images/marioi2.png");
+        Fondo back=new Fondo("images/background.jpg",img2);       
         //Focusable
         img2.setFocusable(true);
+        back.setFocusable(false);
         btnStart.setFocusable(false);
         //Set Bounds
         btnStart.setBounds(10,10,75,25);
-        img1.setBounds(10,40,42,42);
-        img2.setBounds(10,90,42,42);
+        //img1.setBounds(10,40,42,42);
+        img2.setBounds(10,174,42,42);
+        back.setBounds(0,-817,3840,1080);
 
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 //Deshabilitar el boton
                 btnStart.setEnabled(false);
                 //Hilo mario
-                Thread tm=new Thread(img1);
+                /*Thread tm=new Thread(img1);
                 img1.btnStart=(btnStart);
-                tm.start();
+                tm.start();*/
                 //Hilo Link
                 Thread t2=new Thread(img2);
                 t2.start();
-                /*//Hilo link
-                Thread tl=new Thread (img2);
-                img2.btnStart=(btnStart);
-                tl.start();*/
+                Thread t3=new Thread(back);
+                t3.start();
             }
         };
         //Listeners
@@ -43,8 +43,10 @@ public class Ventana extends JFrame{
         img2.addKeyListener(img2);
         //Los ADD
         add(btnStart);
-        add(img1);
+        /*add(img1);*/
         add(img2);
+        add(back);
+        
         //valores ventana
         setTitle("Ventana #3");
         setSize(300,300);
