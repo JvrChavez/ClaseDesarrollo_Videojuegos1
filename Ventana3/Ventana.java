@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Ventana extends JFrame{
+    boolean correri;
     public Ventana(){
         initValues();
     }    
@@ -33,8 +34,10 @@ public class Ventana extends JFrame{
                 tm.start();*/
                 //Hilo Link
                 Thread t2=new Thread(img2);
+                img2.correr=correri;
                 t2.start();
                 Thread t3=new Thread(back);
+                back.correr=correri;
                 t3.start();
             }
         };

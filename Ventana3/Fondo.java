@@ -1,25 +1,27 @@
 package Ventana3;
 
 import javax.swing.*;
-import java.awt.event.*;
 
-public class Fondo extends JLabel implements Runnable,KeyListener{
+public class Fondo extends JLabel implements Runnable{
     private ImageIcon icon;
     private JLabel avatar;
     private int x,xa;
-    private boolean correr=false;
+    boolean correr;
+    //private boolean correr=false;
     public Fondo(String url,JLabel avatar){
-        this.avatar=avatar;
+        this.avatar=avatar;        
         icon=new ImageIcon(this.getClass().getResource(url));
         setIcon(icon);
     }
     public void run() {
         try {
-            while(true){
-                Thread.sleep(50);
+            while(true){                
+                Thread.sleep(50);                
                 if (correr) {
+                    System.out.println("9");
                     desplazarFondo(9);
                 }else{
+                    System.out.println("5");
                     desplazarFondo(5);
                 }
                 
@@ -27,19 +29,6 @@ public class Fondo extends JLabel implements Runnable,KeyListener{
         } catch (Exception e) {
             // TODO: handle exception
         }        
-    }
-    //Valores movimiento
-    public void keyTyped(KeyEvent ke){}
-    public void keyPressed(KeyEvent ke){          
-        if ((ke.getKeyCode()==KeyEvent.VK_SPACE)) {
-            System.out.println("corri");
-            correr=true;                
-        }             
-    }
-    public void keyReleased(KeyEvent ke){
-        if ((ke.getKeyCode()==KeyEvent.VK_SPACE)) {            
-            correr=false;
-        }
     }
     public void desplazarFondo(int move){        
         xa=avatar.getX();

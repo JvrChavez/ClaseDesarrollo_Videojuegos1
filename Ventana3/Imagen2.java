@@ -6,7 +6,7 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
     private String url1,url2,urli1,urli2;
     private ImageIcon icon;
     private int posX=10,posY=174,aire=0;
-    private boolean runStatus=false,correr=false,right=false,left=false,brincar=false;
+    boolean runStatus=false,correr,right=false,left=false,brincar=false;
     public Imagen2(String url1,String url2,String urli1,String urli2){
         this.url1=url1;
         this.url2=url2;
@@ -35,6 +35,14 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
                         posX+=5;
                         animacionDerecha();                        
                     }                    
+                }else{//Experimental
+                    posX++;
+                    posX++;
+                    animacionDerecha();
+                    Thread.sleep(50);
+                    System.out.println(posX);
+                    posX--;
+                    posX--;
                 }
                 if (posX>0){
                     if (correr && left) {//Condicional right y correr
@@ -62,7 +70,7 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
                 left=true;                                                                                      
             }
             if ((ke.getKeyCode()==KeyEvent.VK_SHIFT)) {
-                correr=true;                
+                correr=true;            
             }
             if ((ke.getKeyCode()==KeyEvent.VK_UP)) {
                 brincar=true;                                
