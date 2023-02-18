@@ -38,7 +38,7 @@ public class Ventana extends JFrame{
                 t2.start();
                 Thread t3=new Thread(back);
                 back.correr=correri;
-                t3.start();
+                t3.start();//Hola
             }
         };
         //Listeners
