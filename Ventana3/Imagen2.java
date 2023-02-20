@@ -38,11 +38,14 @@ public class Imagen2 extends JLabel implements Runnable,KeyListener{
                 }else{//Experimental
                     posX++;
                     posX++;
+                    posX++;
                     animacionDerecha();
                     Thread.sleep(50);
                     System.out.println(posX);
                     posX--;
                     posX--;
+                    posX--;
+
                 }
                 if (posX>0){
                     if (correr && left) {//Condicional right y correr
