@@ -33,7 +33,7 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
             setBounds(120,174,42,42);
-        }else if(posX<=265){            
+        }else if(posX<=263){            
             posX+=power;            
             setBounds(posX,174,42,42);
             System.out.println(posX);
