@@ -12,6 +12,7 @@ public class Ventana2 extends JFrame{
         
 
         Imagen3 img=new Imagen3("images/mario1.png","images/mario2.png");
+        img.background=background;
 
         JButton btnStart=new JButton("Start");
 

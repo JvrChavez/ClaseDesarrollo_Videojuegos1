@@ -3,9 +3,10 @@ import javax.swing.*;
 import java.awt.event.*;
 public class Imagen3 extends JLabel implements Runnable,KeyListener{
     private String url1,url2;
-    private int posX=10;
+    private int posX=10,posXBack=0;
     private ImageIcon icon;
     private boolean changeImg=false,runStatus=false,right=false,shift=false;
+    JLabel background;
     public Imagen3(String url1,String url2){
         this.url1=url1;
         this.url2=url2;
@@ -15,7 +16,7 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
     public void run(){
         runStatus=true;
         while(true){
-            System.out.println("while");
+            System.out.println("while");            
             if(right&&shift){moveImage(10, 40);}
             if(right){moveImage(1,100);}
         }//end while
@@ -28,9 +29,16 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             icon=new ImageIcon(this.getClass().getResource(url2));
             changeImg=true;
         }
-        posX++;
+        if(posX>=120 && posXBack>=-500){
+            posXBack-=power;
+            background.setBounds(posXBack,-817,3840,1080);
+            setBounds(120,174,42,42);
+        }else if(posX<=265){            
+            posX+=power;            
+            setBounds(posX,174,42,42);
+            System.out.println(posX);
+        }
         setIcon(icon);
-        setBounds(posX,174,42,42);
         try {
             Thread.sleep(time);
         } catch (Exception e) {
@@ -44,5 +52,8 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=true;}
         }
     }//end keyPressed
-    public void keyReleased(KeyEvent ke){}
+    public void keyReleased(KeyEvent ke){
+        if(ke.getKeyCode()==KeyEvent.VK_RIGHT){right=false;}
+        if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=false;}
+    }
 }
