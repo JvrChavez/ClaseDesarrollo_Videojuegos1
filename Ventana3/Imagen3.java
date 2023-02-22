@@ -1,11 +1,12 @@
 package Ventana3;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.Time;
 public class Imagen3 extends JLabel implements Runnable,KeyListener{
     private String url1,url2;
     private int posX=10,posXBack=0;
     private ImageIcon icon;
-    private boolean changeImg=false,runStatus=false,right=false,shift=false;
+    private boolean changeImg=false,runStatus=false,right=false,shift=false,up=false;
     JLabel background;
     public Imagen3(String url1,String url2){
         this.url1=url1;
@@ -19,9 +20,33 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             System.out.println("while");            
             if(right&&shift){moveImage(10, 40);}
             if(right){moveImage(1,100);}
+            if(right&&up){saltote(1,20);}
+            if(up){saltito(20);}
         }//end while
     }//end run
-    private void moveImage(int power,int time){
+    private void saltito(int time){
+        for (int y=174; y >=150; y--) {
+            setBounds(getX(),y,42,42);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end for UP
+        for (int y=getY(); y <=174; y++) {
+            setBounds(getX(),y,42,42);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end for DOWN
+    }
+    private void saltote(int power,int time){
+        for (int y=174; y>=150; y--) {
+            posX+=power;
+            setBounds(posX,y,42,42);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end UP
+        for (int y=getY(); y<=174; y++) {
+            posX+=power;
+            setBounds(posX,y,42,42);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }
+    }//end saltote
+    private void changeImage(int time){
         if(changeImg){
             icon=new ImageIcon(this.getClass().getResource(url1));
             changeImg=false;
@@ -29,6 +54,11 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             icon=new ImageIcon(this.getClass().getResource(url2));
             changeImg=true;
         }
+        
+        setIcon(icon);
+        try {Thread.sleep(time);} catch (Exception e) {}
+    }//end moveImage
+    private void moveImage(int power, int time){
         if(posX>=120 && posXBack>=-500){
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
@@ -38,22 +68,19 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             setBounds(posX,174,42,42);
             System.out.println(posX);
         }
-        setIcon(icon);
-        try {
-            Thread.sleep(time);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }//end moveImage
+        changeImage(time);
+    }
     public void keyTyped(KeyEvent ke){}
     public void keyPressed(KeyEvent ke){
         if(runStatus){
             if(ke.getKeyCode()==KeyEvent.VK_RIGHT){right=true;}
             if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=true;}
+            if(ke.getKeyCode()==KeyEvent.VK_UP){up=true;}
         }
     }//end keyPressed
     public void keyReleased(KeyEvent ke){
         if(ke.getKeyCode()==KeyEvent.VK_RIGHT){right=false;}
         if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=false;}
+        if(ke.getKeyCode()==KeyEvent.VK_UP){up=false;}
     }
 }
