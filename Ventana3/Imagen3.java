@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.sql.Time;
 public class Imagen3 extends JLabel implements Runnable,KeyListener{
     private String url1,url2;
-    private int posX=10,posXBack=0;
+    private int posX=10,posXBack=0,y=174;
     private ImageIcon icon;
     private boolean changeImg=false,runStatus=false,right=false,shift=false,up=false;
     JLabel background;
@@ -25,23 +25,25 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         }//end while
     }//end run
     private void saltito(int time){
-        for (int y=174; y >=150; y--) {
+        for (y=174; y >=150; y--) {
             setBounds(getX(),y,42,42);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end for UP
-        for (int y=getY(); y <=174; y++) {
+        for (y=getY(); y <=174; y++) {
             setBounds(getX(),y,42,42);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end for DOWN
     }
     private void saltote(int power,int time){
-        for (int y=174; y>=150; y--) {
-            posX+=power;
+        for (y=174; y>=150; y--) {
+            //posX+=power;
+            moveImage(power, time);
             setBounds(posX,y,42,42);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end UP
-        for (int y=getY(); y<=174; y++) {
-            posX+=power;
+        for (y=getY(); y<=174; y++) {
+            //posX+=power;
+            moveImage(power, time);
             setBounds(posX,y,42,42);
             try {Thread.sleep(time);} catch (Exception e) {}
         }
@@ -62,11 +64,10 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         if(posX>=120 && posXBack>=-500){
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
-            setBounds(120,174,42,42);
+            setBounds(posX,y,42,42);
         }else if(posX<=263){            
             posX+=power;            
-            setBounds(posX,174,42,42);
-            System.out.println(posX);
+            setBounds(posX,y,42,42);            
         }
         changeImage(time);
     }
