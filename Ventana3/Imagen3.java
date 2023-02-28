@@ -77,7 +77,7 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             if (xblocks<-16){xblocks+=300;}else{xblocks-=power;}//Hace reaparecer el bloque en cuanto sale de pantalla
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
-            wall1.setBounds(xblocks,200,16,16);
+            wall1.setBounds(xblocks,204,16,12);
             setBounds(posX,y,32,39);
         }else if(posX<=263&&right){            
             posX+=power;            

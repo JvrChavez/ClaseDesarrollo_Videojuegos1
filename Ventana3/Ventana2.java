@@ -24,7 +24,7 @@ public class Ventana2 extends JFrame{
         btnStart.setFocusable(false);
         //Bounds
         btnStart.setBounds(10,80,75,30);
-        wall1.setBounds(70,200,16,16);
+        wall1.setBounds(70,204,16,12);
         background.setBounds(0,-817,3840,1080);
         img.setBounds(10,174,32,39);
         //Listeners de hilos
