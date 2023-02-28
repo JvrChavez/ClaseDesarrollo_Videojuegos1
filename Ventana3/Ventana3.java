@@ -1,8 +1,8 @@
 package Ventana3;
 import javax.swing.*;
 import java.awt.event.*;
-public class Ventana2 extends JFrame{
-    public Ventana2(){
+public class Ventana3 extends JFrame{
+    public Ventana3(){
         initValues();
     }
     private void initValues(){
@@ -10,23 +10,23 @@ public class Ventana2 extends JFrame{
         ImageIcon icon=new ImageIcon(this.getClass().getResource("images/background.jpg"));
         background.setIcon(icon);
 
-        Imagen3 img=new Imagen3("images/mario1.png","images/mario2.png","images/marioSaltoOrigin.png");
-        img.background=background;
+        Imagen4 img=new Imagen4("images/mario1.png","images/mario2.png");
+
+        JLabel base=new JLabel();
+        ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/base.PNG"));
+        base.setIcon(icon2);
+
+        img.base=base;
 
         JButton btnStart=new JButton("Start");
 
-        JLabel wall1=new JLabel();
-        ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/wall.png"));
-        wall1.setIcon(icon2);
-        img.wall1=wall1;
-        //Focus
         img.setFocusable(true);
         btnStart.setFocusable(false);
-        //Bounds
-        btnStart.setBounds(10,80,75,30);
-        wall1.setBounds(70,204,16,12);
-        background.setBounds(0,-817,3840,1080);
+
         img.setBounds(10,174,32,39);
+        btnStart.setBounds(10,80,75,30);
+        base.setBounds(0,214,162,27);
+        background.setBounds(0,-817,3840,1080);
         //Listeners de hilos
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae){
@@ -35,10 +35,10 @@ public class Ventana2 extends JFrame{
             }//end actionPerformed
         };
         btnStart.addActionListener(listener);
-        img.addKeyListener(img);
+        img.addKeyListener(img);        
         //Agregar elementos
         add(img);
-        add(wall1);
+        add(base);
         add(btnStart);
         add(background);
         //Valores de ventana
