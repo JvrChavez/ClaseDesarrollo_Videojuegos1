@@ -20,10 +20,10 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         runStatus=true;
         while(true){
             System.out.println("while");            
-            if(right&&shift){moveImage(10, 40);}
-            else if(right){moveImage(3,100);}
-            if(shift&right&up){saltote(10, 100);}
-            if(right&&up){saltote(3,20);}
+            if(right&&shift){moveImage(8, 70);}
+            else if(right){moveImage(4,90);}
+            if(shift&right&up){saltote(8, 70);}
+            if(right&&up){saltote(4,90);}
             if(up){saltito(20);}
             if(interseccion()){
                 break;
