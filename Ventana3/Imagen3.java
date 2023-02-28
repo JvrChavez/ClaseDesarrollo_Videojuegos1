@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.awt.geom.*;
 public class Imagen3 extends JLabel implements Runnable,KeyListener{
     private String url1,url2,url3;
-    private int posX=10,posXBack=0,y=174;
+    private int posX=10,posXBack=0,y=174,xblocks=70;
     private ImageIcon icon;
     private boolean changeImg=false,runStatus=false,right=false,shift=false,up=false;
     JLabel background,wall1;
@@ -25,15 +25,13 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             if(shift&right&up){saltote(8, 70);}
             if(right&&up){saltote(4,90);}
             if(up){saltito(20);}
-            if(interseccion()){
-                break;
-            }
+            if(interseccion()){break;}
         }//end while
     }//end run
     private boolean interseccion(){
         Area areaWall1=new Area(wall1.getBounds());
-        Area areaMArio=new Area(this.getBounds());
-        return areaWall1.intersects(areaMArio.getBounds2D());
+        Area areaMario=new Area(getBounds());
+        return areaWall1.intersects(areaMario.getBounds2D());
     }
     private void saltito(int time){
         for (y=174; y >=150; y--) {
@@ -70,16 +68,16 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         }else{
             icon=new ImageIcon(this.getClass().getResource(url2));
             changeImg=true;
-        }
-        
+        }        
         setIcon(icon);
         try {Thread.sleep(time);} catch (Exception e) {}
     }//end moveImage
     private void moveImage(int power, int time){
         if(posX>=120 && posXBack>=-3540&&right){
+            if (xblocks<-16){xblocks+=300;}else{xblocks-=power;}//Hace reaparecer el bloque en cuanto sale de pantalla
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
-            wall1.setBounds((posXBack+70),200,16,16);
+            wall1.setBounds(xblocks,200,16,16);
             setBounds(posX,y,32,39);
         }else if(posX<=263&&right){            
             posX+=power;            
@@ -91,8 +89,7 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             setIcon(icon);
         }else{
             System.out.println("algo");
-            changeImage(time);}
-        
+            changeImage(time);}        
     }
     public void keyTyped(KeyEvent ke){}
     public void keyPressed(KeyEvent ke){
