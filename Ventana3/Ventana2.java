@@ -16,12 +16,18 @@ public class Ventana2 extends JFrame{
 
         JButton btnStart=new JButton("Start");
 
+        JLabel wall1=new JLabel();
+        ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/wall.png"));
+        wall1.setIcon(icon2);
+        img.wall1=wall1;
+
         img.setFocusable(true);
         btnStart.setFocusable(false);
 
         btnStart.setBounds(10,80,75,30);
+        wall1.setBounds(70,200,16,16);
         background.setBounds(0,-817,3840,1080);
-        img.setBounds(10,174,42,42);
+        img.setBounds(10,174,32,39);
 
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae){
@@ -33,6 +39,7 @@ public class Ventana2 extends JFrame{
         img.addKeyListener(img);
 
         add(img);
+        add(wall1);
         add(btnStart);
         add(background);
 

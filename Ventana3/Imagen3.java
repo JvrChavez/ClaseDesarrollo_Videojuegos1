@@ -2,12 +2,13 @@ package Ventana3;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.Time;
+import java.awt.geom.*;
 public class Imagen3 extends JLabel implements Runnable,KeyListener{
     private String url1,url2,url3;
     private int posX=10,posXBack=0,y=174;
     private ImageIcon icon;
     private boolean changeImg=false,runStatus=false,right=false,shift=false,up=false;
-    JLabel background;
+    JLabel background,wall1;
     public Imagen3(String url1,String url2,String url3){
         this.url1=url1;
         this.url2=url2;
@@ -24,17 +25,25 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             if(shift&right&up){saltote(10, 100);}
             if(right&&up){saltote(3,20);}
             if(up){saltito(20);}
+            if(interseccion()){
+                break;
+            }
         }//end while
     }//end run
+    private boolean interseccion(){
+        Area areaWall1=new Area(wall1.getBounds());
+        Area areaMArio=new Area(this.getBounds());
+        return areaWall1.intersects(areaMArio.getBounds2D());
+    }
     private void saltito(int time){
         for (y=174; y >=150; y--) {
             moveImage(1, time);
-            setBounds(posX,y,42,42);
+            setBounds(posX,y,32,39);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end for UP
         for (y=getY(); y <=173; y++) {
             moveImage(0, time);
-            setBounds(posX,y,42,42);
+            setBounds(posX,y,32,39);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end for DOWN
         changeImage(time);
@@ -43,13 +52,13 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         for (y=174; y>=150; y-=power) {
             //posX+=power;
             moveImage(power, time);
-            setBounds(posX,y,42,42);
+            setBounds(posX,y,32,39);
             try {Thread.sleep(time);} catch (Exception e) {}
         }//end UP
         for (y=getY(); y<=173; y+=power) {
             //posX+=power;
             moveImage(power, time);
-            setBounds(posX,y,42,42);
+            setBounds(posX,y,32,39);
             try {Thread.sleep(time);} catch (Exception e) {}
         }
         //changeImage(time);
@@ -70,10 +79,11 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
         if(posX>=120 && posXBack>=-3540&&right){
             posXBack-=power;
             background.setBounds(posXBack,-817,3840,1080);
-            setBounds(posX,y,42,42);
+            wall1.setBounds((posXBack+70),200,16,16);
+            setBounds(posX,y,32,39);
         }else if(posX<=263&&right){            
             posX+=power;            
-            setBounds(posX,y,42,42);            
+            setBounds(posX,y,32,39);           
         }
         if(up || (y<=173)){
             System.out.println("si entro");
