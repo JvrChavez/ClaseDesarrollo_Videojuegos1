@@ -23,9 +23,9 @@ public class Ventana3 extends JFrame{
         img.setFocusable(true);
         btnStart.setFocusable(false);
 
-        img.setBounds(10,174,32,39);
+        img.setBounds(10,177,32,39);
         btnStart.setBounds(10,80,75,30);
-        base.setBounds(0,214,162,27);
+        base.setBounds(0,215,162,27);
         background.setBounds(0,-817,3840,1080);
         //Listeners de hilos
         ActionListener listener=new ActionListener(){
