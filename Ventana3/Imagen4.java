@@ -27,18 +27,22 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
             }
         }//end while
     }//end run
-    private void moveImagen(int power,int time){
+    private void changeImage(int time){
         if(changeImg){
             icon=new ImageIcon(this.getClass().getResource(url1));
             changeImg=false;
         }else{
             icon=new ImageIcon(this.getClass().getResource(url2));
             changeImg=true;
-        }
+        }        
+        setIcon(icon);
+        try {Thread.sleep(time);} catch (Exception e) {}
+    }//end moveImage
+    private void moveImagen(int power,int time){
         posX+=power;
         setIcon(icon);
         setBounds(posX,getY(),32,39);
-        try {Thread.sleep(time);} catch (Exception e) {}
+        changeImage(time);
     }//end moveImagen
     private void gravedad(int presion, int time){
         y+=presion;
