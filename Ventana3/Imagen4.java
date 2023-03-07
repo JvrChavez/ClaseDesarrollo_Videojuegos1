@@ -8,7 +8,7 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
     private ImageIcon icon;
     JLabel base;
     private int y=177,posX=10;
-    private boolean runStatus=false, right=false,up=false,changeImg=false;
+    private boolean runStatus=false, right=false,shift=false,up=false,changeImg=false;
     public Imagen4(String url1,String url2){
         this.url1=url1;
         this.url2=url2;
@@ -20,7 +20,8 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
         while (true) {            
             if(interseccion()){
                 gravedad(0, 50);
-                if(right){moveImagen(1, 75);}
+                if(right&&shift){moveImagen(8, 70);}
+                else if(right){moveImagen(4, 90);}
                 if(up){}
             }else{
                 gravedad(5,10);
@@ -39,10 +40,10 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
         try {Thread.sleep(time);} catch (Exception e) {}
     }//end moveImage
     private void moveImagen(int power,int time){
-        posX+=power;
-        setIcon(icon);
+        posX+=power;        
         setBounds(posX,getY(),32,39);
         changeImage(time);
+        setIcon(icon);
     }//end moveImagen
     private void gravedad(int presion, int time){
         y+=presion;
@@ -58,12 +59,14 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
     public void keyReleased(KeyEvent ke){
         if (runStatus) {
             if(ke.getKeyCode()==KeyEvent.VK_RIGHT){right=false;}
+            if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=false;}
             if(ke.getKeyCode()==KeyEvent.VK_UP){up=false;}
         }//end runStatus
     }//end KeyReleased
     public void keyPressed(KeyEvent ke){
         if (runStatus) {
             if(ke.getKeyCode()==KeyEvent.VK_RIGHT){right=true;}
+            if(ke.getKeyCode()==KeyEvent.VK_SHIFT){shift=true;}
             if(ke.getKeyCode()==KeyEvent.VK_UP){up=true;}
         }//end runStatus
     }//end KeyPressed
