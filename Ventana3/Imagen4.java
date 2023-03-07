@@ -4,14 +4,15 @@ import java.awt.event.*;
 import java.awt.geom.*;
 
 public class Imagen4 extends JLabel implements Runnable,KeyListener{
-    private String url1, url2;
+    private String url1, url2,url3;
     private ImageIcon icon;
     JLabel base;
     private int y=177,posX=10;
     private boolean runStatus=false, right=false,shift=false,up=false,changeImg=false;
-    public Imagen4(String url1,String url2){
+    public Imagen4(String url1,String url2,String url3){
         this.url1=url1;
         this.url2=url2;
+        this.url3=url3;
         icon=new ImageIcon(this.getClass().getResource(url1));
         setIcon(icon);
     }
@@ -22,12 +23,25 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
                 gravedad(0, 50);
                 if(right&&shift){moveImagen(8, 70);}
                 else if(right){moveImagen(4, 90);}
-                if(up){}
+                if(up){saltito(20);}
             }else{
                 gravedad(5,10);
             }
         }//end while
     }//end run
+    private void saltito(int time){
+        for (y=174; y >=150; y--) {
+            moveImagen(1, time);
+            setBounds(posX,y,32,39);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end for UP
+        for (y=getY(); y <=173; y++) {
+            moveImagen(0, time);
+            setBounds(posX,y,32,39);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end for DOWN
+        changeImage(time);
+    }
     private void changeImage(int time){
         if(changeImg){
             icon=new ImageIcon(this.getClass().getResource(url1));
@@ -40,10 +54,17 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
         try {Thread.sleep(time);} catch (Exception e) {}
     }//end moveImage
     private void moveImagen(int power,int time){
-        posX+=power;        
-        setBounds(posX,getY(),32,39);
-        changeImage(time);
-        setIcon(icon);
+        if(right){
+            posX+=power;        
+            setBounds(posX,getY(),32,39);
+            changeImage(time);
+            setIcon(icon);
+        }        
+        if(up || (y<=173)){
+            icon=new ImageIcon(this.getClass().getResource(url3));
+            setIcon(icon);
+        }else{
+            changeImage(time);} 
     }//end moveImagen
     private void gravedad(int presion, int time){
         y+=presion;

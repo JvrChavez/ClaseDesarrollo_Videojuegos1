@@ -10,7 +10,7 @@ public class Ventana3 extends JFrame{
         ImageIcon icon=new ImageIcon(this.getClass().getResource("images/background.jpg"));
         background.setIcon(icon);
 
-        Imagen4 img=new Imagen4("images/mario1.png","images/mario2.png");
+        Imagen4 img=new Imagen4("images/mario1.png","images/mario2.png","images/marioSaltoOrigin.png");
 
         JLabel base=new JLabel();
         ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/base.png"));
