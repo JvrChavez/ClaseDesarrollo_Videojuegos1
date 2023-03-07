@@ -42,7 +42,7 @@ public class Ventana3 extends JFrame{
         add(btnStart);
         add(background);
         //Valores de ventana
-        setTitle("Ventana2");
+        setTitle("Ventana3");
         setSize(300,300);
         setResizable(false);
         setLayout(null);
