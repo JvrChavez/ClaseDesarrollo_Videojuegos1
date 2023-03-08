@@ -16,7 +16,12 @@ public class Ventana3 extends JFrame{
         ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/base.png"));
         base.setIcon(icon2);
 
+        JLabel base2=new JLabel();
+        ImageIcon icon3=new ImageIcon(this.getClass().getResource("images/base.png"));
+        base2.setIcon(icon3);
+
         img.base=base;
+        img.base2=base2;
 
         JButton btnStart=new JButton("Start");
 
@@ -26,6 +31,7 @@ public class Ventana3 extends JFrame{
         img.setBounds(10,177,32,39);
         btnStart.setBounds(10,80,75,30);
         base.setBounds(0,215,162,27);
+        base2.setBounds(200,215,162,27);
         background.setBounds(0,-817,3840,1080);
         //Listeners de hilos
         ActionListener listener=new ActionListener(){
@@ -39,6 +45,7 @@ public class Ventana3 extends JFrame{
         //Agregar elementos
         add(img);
         add(base);
+        add(base2);
         add(btnStart);
         add(background);
         //Valores de ventana

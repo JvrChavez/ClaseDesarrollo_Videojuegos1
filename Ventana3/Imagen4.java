@@ -6,7 +6,7 @@ import java.awt.geom.*;
 public class Imagen4 extends JLabel implements Runnable,KeyListener{
     private String url1, url2,url3;
     private ImageIcon icon;
-    JLabel base;
+    JLabel base,base2;
     private int y=177,posX=10;
     private boolean runStatus=false, right=false,shift=false,up=false,changeImg=false;
     public Imagen4(String url1,String url2,String url3){
@@ -88,8 +88,9 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
     }//end gravedad
     public boolean interseccion(){
         Area aBase=new Area(base.getBounds());
+        Area aBase2=new Area(base2.getBounds());
         Area aMario=new Area(getBounds());
-        return aBase.intersects(aMario.getBounds2D());
+        return (aBase.intersects(aMario.getBounds2D()) || aBase2.intersects(aMario.getBounds2D()));
     }
     public void keyTyped(KeyEvent ke) {} 
     public void keyReleased(KeyEvent ke){
