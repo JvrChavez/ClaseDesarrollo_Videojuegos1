@@ -2,10 +2,11 @@ package Ventana3;
 
 import javax.swing.JLabel;
 import javax.swing.*;
-public class Kemonito extends JLabel implements Runnable {
+import java.awt.event.*;
+public class Kemonito extends JLabel implements Runnable ,KeyListener{
         private String url1,url2;
         private ImageIcon icon;
-        private boolean moveStatus=false,pausar,stop=false;
+        private boolean moveStatus=false,pausar,stop,runStatus=false,bandera=true;
     public Kemonito(String url1,String url2){
         this.url1=url1;
         this.url2=url2;
@@ -13,7 +14,9 @@ public class Kemonito extends JLabel implements Runnable {
         setIcon(icon);
     }
     public void run(){
-        for (int x = 10; x < 150; x+=3) {
+        runStatus=true;
+        stop=false;
+        for (int x = 10; x < 300; x+=3) {
             if(moveStatus){
                 icon=new ImageIcon(this.getClass().getResource(url1));
                 moveStatus=false;
@@ -39,5 +42,25 @@ public class Kemonito extends JLabel implements Runnable {
     }//end run
     synchronized void pausarHilo(){pausar=true;}
     synchronized void reanudarHilo(){pausar=false; notify();}
-    synchronized void stopHilo(){stop=true; notify();}
+    synchronized void stopHilo(){stop=true; pausar=false; notify();}
+    public void keyTyped(KeyEvent ke){}
+    public void keyPressed(KeyEvent ke){
+        if(runStatus){
+            if(ke.getKeyCode()==KeyEvent.VK_ENTER){
+                if (bandera) {
+                    pausarHilo();
+                    bandera=false;
+                } else {
+                    reanudarHilo();
+                    bandera=true;
+                }
+            }
+            if(ke.getKeyCode()==KeyEvent.VK_BACK_SPACE){
+                stopHilo();
+                bandera=true;
+            }
+        }//end runStatus
+    }//en key Pressed
+    public void keyReleased(KeyEvent ke){}
+
 }
