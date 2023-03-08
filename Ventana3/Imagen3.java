@@ -23,8 +23,8 @@ public class Imagen3 extends JLabel implements Runnable,KeyListener{
             if(right&&shift){moveImage(8, 70);}
             else if(right){moveImage(4,90);}
             if(shift&right&up){saltote(8, 70);}
-            if(right&&up){saltote(4,90);}
-            if(up){saltito(20);}
+            else if(right&&up){saltote(4,90);}
+            else if(up){saltito(20);}
             if(interseccion()){break;}
         }//end while
     }//end run

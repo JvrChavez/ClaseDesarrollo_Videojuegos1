@@ -22,13 +22,30 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
             if(interseccion()){
                 gravedad(0, 50);
                 if(right&&shift){moveImagen(8, 70);}
-                else if(right){moveImagen(4, 90);}
-                if(up){saltito(20);}
+                else if(right){moveImagen(4,90);}
+                if(shift&right&up){saltote(8, 70);}
+                else if(right&&up){saltote(4,90);}
+                else if(up){saltito(20);}
             }else{
                 gravedad(5,10);
             }
         }//end while
     }//end run
+    private void saltote(int power,int time){
+        for (y=174; y>=150; y-=power) {
+            //posX+=power;
+            moveImagen(power, time);
+            setBounds(posX,y,32,39);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }//end UP
+        for (y=getY(); y<=173; y+=power) {
+            //posX+=power;
+            moveImagen(power, time);
+            setBounds(posX,y,32,39);
+            try {Thread.sleep(time);} catch (Exception e) {}
+        }
+        //changeImage(time);
+    }//end saltote
     private void saltito(int time){
         for (y=174; y >=150; y--) {
             moveImagen(1, time);
@@ -57,9 +74,7 @@ public class Imagen4 extends JLabel implements Runnable,KeyListener{
         if(right){
             posX+=power;        
             setBounds(posX,getY(),32,39);
-            changeImage(time);
-            setIcon(icon);
-        }        
+        }      
         if(up || (y<=173)){
             icon=new ImageIcon(this.getClass().getResource(url3));
             setIcon(icon);
