@@ -24,9 +24,21 @@ public class Ventana5 extends JFrame{
                     sonido=new Sonido("Ventana3/sonido/mario1v2.wav");
                     sonido.play();
                 }
+                if(ae.getSource()==btnPause){
+                    sonido.pause();
+                }
+                if(ae.getSource()==btnResume){
+                    sonido.resume();
+                }
+                if(ae.getSource()==btnStop){
+                    sonido.stopAlto();
+                }
             }
         };
         btnStart.addActionListener(listener);
+        btnPause.addActionListener(listener);
+        btnResume.addActionListener(listener);
+        btnStop.addActionListener(listener);
 
         add(btnStart);
         add(btnPause);
