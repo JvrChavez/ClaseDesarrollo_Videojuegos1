@@ -13,12 +13,9 @@ public class Sonido {
         } catch (Exception e) {}
     }
     public void play(){
-        try{
-            System.out.println("Entro al play");
-            clip.open(audioStream);
-            System.out.println("dentro");
-            clip.loop(0);
-            System.out.println("Salio");
+        try{            
+            clip.open(audioStream);            
+            clip.loop(0);        
         }catch(Exception e){}
     }
 }
