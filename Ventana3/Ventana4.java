@@ -7,8 +7,8 @@ public class Ventana4 extends JFrame{
         initValues();
     }
     private void initValues(){
-        Kemonito monito=new Kemonito("images/mario1.png","images/mario2.png");
         JButton btnStart=new JButton("Start");
+        Kemonito monito=new Kemonito("images/mario1.png","images/mario2.png",btnStart);
         //JButton btnPause=new JButton("Pause");
         //JButton btnReanudar=new JButton("Reanudar");
         //JButton btnStop=new JButton("Stop");
