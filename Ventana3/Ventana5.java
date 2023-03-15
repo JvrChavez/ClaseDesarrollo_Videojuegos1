@@ -21,7 +21,7 @@ public class Ventana5 extends JFrame{
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 if (ae.getSource()==btnStart) {
-                    sonido=new Sonido("Ventana3/sonido/mario1v2.wav");
+                    sonido=new Sonido("Ventana3/sonido/sonidillo.wav");
                     sonido.play();
                 }
                 if(ae.getSource()==btnPause){

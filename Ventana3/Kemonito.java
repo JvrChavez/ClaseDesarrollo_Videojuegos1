@@ -48,6 +48,7 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
         if(runStatus){
             if(ke.getKeyCode()==KeyEvent.VK_ENTER){
                 if (bandera) {
+                    
                     pausarHilo();
                     bandera=false;
                 } else {

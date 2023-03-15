@@ -2,6 +2,6 @@ package Ventana3;
 
 public class Main {
     public static void main(String[] args){
-        new Ventana5();
+        new Ventana4();
     }
 }
