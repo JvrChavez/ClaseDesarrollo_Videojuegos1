@@ -7,17 +7,20 @@ public class Ventana4 extends JFrame{
         initValues();
     }
     private void initValues(){
+        Kemonito monito=new Kemonito("images/mario1.png","images/mario2.png");
         JButton btnStart=new JButton("Start");
-        Kemonito monito=new Kemonito("images/mario1.png","images/mario2.png",btnStart);
+        JLabel lblControles=new JLabel("Enter: Pausa/Reanudar      Back: Stop");
         //JButton btnPause=new JButton("Pause");
         //JButton btnReanudar=new JButton("Reanudar");
         //JButton btnStop=new JButton("Stop");
+        monito.btnStart=btnStart;
 
         monito.setFocusable(true);
         btnStart.setFocusable(false);
 
         monito.setBounds(10,177,32,39);
         btnStart.setBounds(10,60,70,30);
+        lblControles.setBounds(10,10,300,30);
         //btnPause.setBounds(80,60,70,30);
         //btnReanudar.setBounds(140,60,70,30);
         //btnStop.setBounds(210,60,70,30);
@@ -25,7 +28,7 @@ public class Ventana4 extends JFrame{
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 if(ae.getSource()==btnStart){
-                    Thread t=new Thread(monito);
+                    Thread t=new Thread(monito);                   
                     t.start();
                 }
                 /*if(ae.getSource()==btnPause){
@@ -56,6 +59,7 @@ public class Ventana4 extends JFrame{
         //Adds
         add(monito);
         add(btnStart);
+        add(lblControles);
         //add(btnPause);
         //add(btnReanudar);
         //add(btnStop);

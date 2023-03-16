@@ -5,15 +5,15 @@ import java.awt.event.*;
 import javax.sound.sampled.*;
 import java.io.*;
 public class Kemonito extends JLabel implements Runnable ,KeyListener{
-        private String url1,url2,ruta="Ventana3/sonido/sonidillo.wav";
+        private String url1,url2,ruta="Ventana3/sonido/dragonball.wav";
         private ImageIcon icon;
         private boolean moveStatus=false,pausar,stop,runStatus=false,bandera=true;
         private AudioInputStream audioStream;
-        private JButton btnStart;
+        JButton btnStart;
+        private int x=10,x1=10,x2=270;
     private Clip clip;
     private Long microSegundos;
-    public Kemonito(String url1,String url2,JButton btnStart){
-        this.btnStart=btnStart;
+    public Kemonito(String url1,String url2){
         this.url1=url1;
         this.url2=url2;
         icon=new ImageIcon(this.getClass().getResource(url1));
@@ -22,22 +22,26 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
     public void run(){
         runStatus=true;
         stop=false;
-        btnStart.disable();
+        btnStart.setEnabled(false);
+        x1=10;x2=270;
         try {
             audioStream=AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());
             clip=AudioSystem.getClip();
             clip.open(audioStream);            
-            clip.loop(0);  
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  
         } catch (Exception e) {}
-        for (int x = 10; x < 300; x+=3) {
+        //for (int x = 10; x < 300; x+=3) {
+        while(true){
+            if(x1<270){x1+=3; x=x1;
+            }else if (x2>10){x2-=3; x=x2;}
+            else{x1=10;x2=270;}
             if(moveStatus){
                 icon=new ImageIcon(this.getClass().getResource(url1));
                 moveStatus=false;
             }else{
                 icon=new ImageIcon(this.getClass().getResource(url2));
                 moveStatus=true;             
-            }
-            
+            }            
             setIcon(icon);
             setBounds(x,getY(),32,39);
             try{Thread.sleep(100);}catch(Exception e){}
@@ -48,16 +52,16 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
                     }
                     if(stop){
                         stop=false;
-                        btnStart.enable();
+                        btnStart.setEnabled(true);
                         break;
                     }
                 }//end synchronized
             } catch (Exception e) {}
-        }//end for
+        }            
+        //}//end for
     }//end run
     synchronized void pausarHilo(){        
         microSegundos=clip.getMicrosecondPosition();
-        System.out.println(microSegundos);
         clip.stop();
         pausar=true;
     }
@@ -69,8 +73,7 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
         try {
             audioStream=AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());           
             clip.open(audioStream);            
-            clip.loop(0);
-            System.out.println("reanudar "+microSegundos);       
+            clip.loop(0);    
             clip.setMicrosecondPosition(microSegundos);            
         } catch (Exception e) {}
     }
