@@ -69,11 +69,10 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
         pausar=false;
         notify();
         clip.close();
-        
         try {
             audioStream=AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());           
             clip.open(audioStream);            
-            clip.loop(0);    
+            clip.loop(Clip.LOOP_CONTINUOUSLY);    
             clip.setMicrosecondPosition(microSegundos);            
         } catch (Exception e) {}
     }
