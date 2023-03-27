@@ -11,6 +11,7 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
         private AudioInputStream audioStream;
         JButton btnStart;
         private int x=10,x1=10,x2=270;
+        Circulo1 c1;
     private Clip clip;
     private Long microSegundos;
     public Kemonito(String url1,String url2){
@@ -57,6 +58,8 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
                     }
                 }//end synchronized
             } catch (Exception e) {}
+            c1.moverCirculo();
+            c1.repaint();
         }            
         //}//end for
     }//end run

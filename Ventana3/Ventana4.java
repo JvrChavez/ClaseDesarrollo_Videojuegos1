@@ -13,6 +13,8 @@ public class Ventana4 extends JFrame{
         //JButton btnPause=new JButton("Pause");
         //JButton btnReanudar=new JButton("Reanudar");
         //JButton btnStop=new JButton("Stop");
+        Circulo1 c1=new Circulo1();
+        monito.c1=c1;
         monito.btnStart=btnStart;
 
         monito.setFocusable(true);
@@ -24,6 +26,7 @@ public class Ventana4 extends JFrame{
         //btnPause.setBounds(80,60,70,30);
         //btnReanudar.setBounds(140,60,70,30);
         //btnStop.setBounds(210,60,70,30);
+        c1.setBounds(10,10,70,50);
 
         ActionListener listener=new ActionListener(){
             public void actionPerformed(ActionEvent ae){
@@ -59,7 +62,8 @@ public class Ventana4 extends JFrame{
         //Adds
         add(monito);
         add(btnStart);
-        add(lblControles);
+        //add(lblControles);
+        add(c1);
         //add(btnPause);
         //add(btnReanudar);
         //add(btnStop);
