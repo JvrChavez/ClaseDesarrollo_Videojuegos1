@@ -58,8 +58,16 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
                     }
                 }//end synchronized
             } catch (Exception e) {}
-            c1.moverCirculo();
-            c1.repaint();
+            
+            try {
+                c1.moverReloj();
+                Thread.sleep(600);
+                c1.repaint();                
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }            
+            
         }            
         //}//end for
     }//end run
