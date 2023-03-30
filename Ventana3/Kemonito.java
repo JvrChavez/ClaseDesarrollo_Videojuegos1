@@ -61,7 +61,7 @@ public class Kemonito extends JLabel implements Runnable ,KeyListener{
             
             try {
                 c1.moverReloj();
-                Thread.sleep(600);
+                Thread.sleep(460);
                 c1.repaint();                
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block

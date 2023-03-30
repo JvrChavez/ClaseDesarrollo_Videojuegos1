@@ -7,8 +7,17 @@ public class Circulo1 extends JPanel{
     private int x=35,y=0;
     private int h=50,w=70;
     public void moverReloj(){
-        x++;
-        y++;
+        
+        if(y>25){
+            x--;
+        }else{
+            x++;
+        }
+        if(x<35){
+            y--;
+        }else{
+            y++;
+        }
     }
     public void paint (Graphics g){
         super.paint(g);
