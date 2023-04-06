@@ -4,16 +4,17 @@ import java.awt.event.*;
 import java.awt.geom.*;
 public class Bots extends JLabel implements Runnable{
     private ImageIcon icon;
-    private String url1,url2,url3,url4;
+    private String url1,url2,url3,url4,name;
     private boolean runStatus,moveStatus=false,upSatus=false,right=true,left=false,up=false,correr=false,falling=false;
     JLabel roca,fondo,rocaother,rocaother2;
     Human1  player;
     Bots botcito;
-    public Bots(String url1,String url2,String url3,String url4){
+    public Bots(String url1,String url2,String url3,String url4,String name){
         this.url1=url1;
         this.url2=url2;
         this.url3=url3;
         this.url4=url4;
+        this.name=name;
         icon=new ImageIcon(this.getClass().getResource(url1));
         setIcon(icon);
     }
@@ -31,7 +32,15 @@ public class Bots extends JLabel implements Runnable{
             while(interseccion()){caer(3,70);}
             //Se recomponen por default las cosas aleatorias
             up=false;
-            correr=false;     
+            correr=false;
+            if(getX()>1215){//Condicional de si gano
+                System.out.println("Gano "+name);
+                break;
+            }else if(player.getX()>1215){
+                break;
+            }else if(botcito.getX()>1215){
+                break;
+            }    
         }        
     }//end run
     public void caer(int power,int time){
@@ -61,7 +70,8 @@ public class Bots extends JLabel implements Runnable{
     }//end salto
     public void moveImage(int power,int time){
         changeImage();
-        if(roca.getX()<10){roca.setBounds(roca.getX()+1000,roca.getY(),roca.getWidth(),roca.getHeight());}//Reaparece la roca
+        roca.setBounds(roca.getX()-power,roca.getY(),roca.getWidth(),roca.getHeight());
+        if(roca.getX()<-30){roca.setBounds(roca.getX()+1280,roca.getY(),roca.getWidth(),roca.getHeight());}//Reaparece la roca
         if(getX()>640&&fondo.getX()>-1792&& !left){            
             fondo.setBounds(fondo.getX()-power,fondo.getY(),fondo.getWidth(),fondo.getHeight());
             roca.setBounds(roca.getX()-power,roca.getY(),roca.getWidth(),roca.getHeight());

@@ -26,7 +26,14 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             else if(right&&up){salto(3, 3, 50);}
             else if(up){salto(1, 3, 20);}
             while(interseccion()){caer(2,70);}
-               
+            if(getX()>1215){//Condicional de si gano
+                System.out.println("Gano Humano");
+                break;
+            }else if(botcito.getX()>1215){
+                break;
+            }else if(botcito2.getX()>1215){
+                break;
+            }
         }        
     }//end run
     public void caer(int power,int time){
@@ -56,7 +63,8 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
     }//end salto
     public void moveImage(int power,int time){
         changeImage();
-        if(roca.getX()<10){roca.setBounds(roca.getX()+1000,roca.getY(),roca.getWidth(),roca.getHeight());}//Reaparece la roca
+        roca.setBounds(roca.getX()-power,roca.getY(),roca.getWidth(),roca.getHeight());
+        if(roca.getX()<-30){roca.setBounds(roca.getX()+1280,roca.getY(),roca.getWidth(),roca.getHeight());}//Reaparece la roca
         if(getX()>640&&fondo.getX()>-1792&& !left){            
             fondo.setBounds(fondo.getX()-power,fondo.getY(),fondo.getWidth(),fondo.getHeight());
             roca.setBounds(roca.getX()-power,roca.getY(),roca.getWidth(),roca.getHeight());

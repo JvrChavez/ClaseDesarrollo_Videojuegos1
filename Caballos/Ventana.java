@@ -12,8 +12,8 @@ public class Ventana extends JFrame{
         background.setIcon(icon);
 
         Human1 man=new Human1("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
-        Bots bot=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
-        Bots bot2=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
+        Bots bot=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 3");
+        Bots bot2=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 1");
         JLabel roca=new JLabel();
         JLabel rocabot=new JLabel();
         JLabel rocabot2=new JLabel();
