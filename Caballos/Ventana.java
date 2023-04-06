@@ -8,48 +8,42 @@ public class Ventana extends JFrame{
     }
     private void initValues(){
         JLabel background=new JLabel();
-        ImageIcon icon=new ImageIcon(this.getClass().getResource("images/background.jpg"));
+        ImageIcon icon=new ImageIcon(this.getClass().getResource("images/fondo.jpg"));
         background.setIcon(icon);
 
-        /*Imagen4 img=new Imagen4("images/mario1.png","images/mario2.png","images/marioSaltoOrigin.png");
-
-        JLabel base=new JLabel();
-        ImageIcon icon2=new ImageIcon(this.getClass().getResource("images/base.png"));
-        base.setIcon(icon2);
-
-        JLabel base2=new JLabel();
-        ImageIcon icon3=new ImageIcon(this.getClass().getResource("images/base.png"));
-        base2.setIcon(icon3);
-
-        img.base=base;
-        img.base2=base2;
-
+        Human1 man=new Human1("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
+        JLabel roca=new JLabel();
+        ImageIcon rock=new ImageIcon(this.getClass().getResource("images/obstaculo.png"));
+        roca.setIcon(rock);
+        man.roca=roca;
         JButton btnStart=new JButton("Start");
 
-        img.setFocusable(true);
+        //Focus
+        man.setFocusable(true);
         btnStart.setFocusable(false);
 
-        img.setBounds(10,177,32,39);
-        btnStart.setBounds(10,80,75,30);
-        base.setBounds(0,215,162,27);
-        base2.setBounds(200,215,162,27);
-        background.setBounds(0,-817,3840,1080);
-        //Listeners de hilos
-        ActionListener listener=new ActionListener(){
+        //Bounds
+        man.setBounds(30,155,36,60);
+        roca.setBounds(200,190,30,30);
+        btnStart.setBounds(1100,30,70,25);
+        background.setBounds(0,-157,3840,1080);
+        //Listeners
+        ActionListener listener=new ActionListener() {
             public void actionPerformed(ActionEvent ae){
-                Thread t=new Thread(img);
-                t.start();
-            }//end actionPerformed
+                if (ae.getSource()==btnStart) {
+                    Thread t=new Thread(man);
+                    t.start();
+                }
+            }
         };
         btnStart.addActionListener(listener);
-        img.addKeyListener(img);        
-        //Agregar elementos
-        add(img);
-        add(base);
-        add(base2);
-        add(btnStart);*/
-        background.setBounds(0,-817,3840,1080);
+        man.addKeyListener(man);
+        //Adds
+        add(man);
+        add(roca);
+        add(btnStart);
         add(background);
+        
         //Valores de ventana
         setTitle("Ventana3");
         setSize(1280,720);
