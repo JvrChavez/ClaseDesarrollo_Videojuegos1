@@ -1,14 +1,14 @@
 package Caballos;
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.geom.*;
 public class Bots extends JLabel implements Runnable{
     private ImageIcon icon;
     private String url1,url2,url3,url4,name;
-    private boolean runStatus,moveStatus=false,upSatus=false,right=true,left=false,up=false,correr=false,falling=false;
+    private boolean moveStatus=false,upSatus=false,right=true,left=false,up=false,correr=false,falling=false;
     JLabel roca,fondo,rocaother,rocaother2;
     Human1  player;
     Bots botcito;
+    Ganador gan;
     public Bots(String url1,String url2,String url3,String url4,String name){
         this.url1=url1;
         this.url2=url2;
@@ -19,9 +19,8 @@ public class Bots extends JLabel implements Runnable{
         setIcon(icon);
     }
     public void run(){
-        runStatus=true;
         while(true){
-            if ((Math.random() > 0.5)) {correr=true;}//Condicion aleatoria de correr
+            if ((Math.random() > 0.3)) {correr=true;}//Condicion aleatoria de correr
             if (right&&correr){moveImage(6,50);}
             else if(right){moveImage(4,70);}
             else if(left){moveImage(-3,70);}
@@ -34,7 +33,7 @@ public class Bots extends JLabel implements Runnable{
             up=false;
             correr=false;
             if(getX()>1215){//Condicional de si gano
-                System.out.println("Gano "+name);
+                gan.mostrar("Gano "+name);
                 break;
             }else if(player.getX()>1215){
                 break;

@@ -14,6 +14,7 @@ public class Ventana extends JFrame{
         Human1 man=new Human1("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
         Bots bot=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 3");
         Bots bot2=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 1");
+        Ganador gan=new Ganador();
         JLabel roca=new JLabel();
         JLabel rocabot=new JLabel();
         JLabel rocabot2=new JLabel();
@@ -39,6 +40,9 @@ public class Ventana extends JFrame{
         bot.botcito=bot2;
         bot2.player=man;
         bot2.botcito=bot;
+        man.gan=gan;
+        bot.gan=gan;
+        bot2.gan=gan;
         JButton btnStart=new JButton("Start");
 
         //Focus
@@ -55,11 +59,13 @@ public class Ventana extends JFrame{
         rocabot.setBounds(200,630,30,30);
         rocabot2.setBounds(200,430,30,30);
         btnStart.setBounds(1100,30,70,25);
+        gan.setBounds(190,260,900,130);
         background.setBounds(0,-157,3840,1080);
         //Listeners
         ActionListener listener=new ActionListener() {
             public void actionPerformed(ActionEvent ae){
                 if (ae.getSource()==btnStart) {
+                    btnStart.setEnabled(false);
                     Thread t=new Thread(man);
                     t.start();
                     Thread t2=new Thread(bot);
@@ -72,6 +78,9 @@ public class Ventana extends JFrame{
         btnStart.addActionListener(listener);
         man.addKeyListener(man);
         //Adds
+        add(gan);
+        //gan.mostrar("Gano corredor 3");
+        gan.setVisible(false);
         add(man);
         add(bot);
         add(bot2);

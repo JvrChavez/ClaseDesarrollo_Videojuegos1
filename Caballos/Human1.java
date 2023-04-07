@@ -8,6 +8,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
     private boolean runStatus,moveStatus=false,upSatus=false,right=false,left=false,up=false,correr=false,falling=false;
     JLabel roca,fondo,rocaother,rocaother2;
     Bots botcito,botcito2;
+    Ganador gan;
     public Human1(String url1,String url2,String url3,String url4){
         this.url1=url1;
         this.url2=url2;
@@ -27,7 +28,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             else if(up){salto(1, 3, 20);}
             while(interseccion()){caer(2,70);}
             if(getX()>1215){//Condicional de si gano
-                System.out.println("Gano Humano");
+                gan.mostrar("Ganaste jugador 1");
                 break;
             }else if(botcito.getX()>1215){
                 break;
