@@ -80,14 +80,13 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
     }
     synchronized void stopHilo(){
         stop=true;
-        btnStart.setEnabled(true);
-        setBounds(1216,getY(),getWidth(),getHeight());
-        System.out.println("Si pasa por aqui");
+        btnStart.setEnabled(true);        
         pausar=false;
         notify();
         microSegundos=0L;
         clip.stop();
         clip.close();
+        setBounds(1216,getY(),getWidth(),getHeight());
     }
     public void caer(int power,int time){
         falling=true;
@@ -152,9 +151,6 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
                     wait();
                 }
                 botcito.notify();
-                if(stop){
-                    stop=false;                  
-                }
             }//end synchronized
         } catch (Exception e) {}
         try {
@@ -163,9 +159,6 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
                     wait();
                 }
                 botcito2.notify();
-                if(stop){
-                    stop=false;                  
-                }
             }//end synchronized
         } catch (Exception e) {}                 
     }//end moveImage
@@ -200,6 +193,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
                 }
             }
             if(ke.getKeyCode()==KeyEvent.VK_ESCAPE){
+                stop=true;
                 stopHilo();
                 bandera=true;
             }
