@@ -25,6 +25,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
         setIcon(icon);
     }
     public void run(){
+        gan.removeAll();
         runStatus=true;
         stop=false;
         btnStart.setEnabled(false);

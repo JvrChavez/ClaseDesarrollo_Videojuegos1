@@ -17,8 +17,8 @@ public class Ventana extends JFrame{
         controles.setFont(new Font("Arial", Font.BOLD, 30));
 
         Human1 man=new Human1("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
-        Bots bot=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 3");
-        Bots bot2=new Bots("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png","corredor 1");
+        Bots bot=new Bots("images/human011.png", "images/human012.png", "images/humanjump01.png","images/humanfall01.png","corredor 3");
+        Bots bot2=new Bots("images/human021.png", "images/human022.png", "images/humanjump02.png","images/humanfall02.png","corredor 1");
         Ganador gan=new Ganador();
         JLabel roca=new JLabel();
         JLabel rocabot=new JLabel();
