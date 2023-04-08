@@ -2,11 +2,18 @@ package Caballos;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.io.*;
+import javax.sound.sampled.*;
 public class Human1 extends JLabel implements Runnable ,KeyListener{
     private ImageIcon icon;
-    private String url1,url2,url3,url4;
+    private String url1,url2,url3,url4,ruta="Caballos/sonidos/musicRocky.wav";
     private boolean runStatus,moveStatus=false,upSatus=false,right=false,left=false,up=false,correr=false,falling=false;
+    private Long microSegundos;
+    private AudioInputStream audioStream;
+    private Clip clip;
+    boolean stop,pausar,bandera=true;
     JLabel roca,fondo,rocaother,rocaother2;
+    JButton btnStart;
     Bots botcito,botcito2;
     Ganador gan;
     public Human1(String url1,String url2,String url3,String url4){
@@ -19,6 +26,22 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
     }
     public void run(){
         runStatus=true;
+        stop=false;
+        btnStart.setEnabled(false);
+        gan.setVisible(false);
+        setBounds(30,getY(),getWidth(),getHeight());
+        botcito.setBounds(30,botcito.getY(),botcito.getWidth(),botcito.getHeight());
+        botcito2.setBounds(30,botcito2.getY(),botcito2.getWidth(),botcito2.getHeight());
+        fondo.setBounds(0,fondo.getY(),fondo.getWidth(),fondo.getHeight());
+        roca.setBounds(200,roca.getY(),roca.getWidth(),roca.getHeight());
+        rocaother.setBounds(200,rocaother.getY(),rocaother.getWidth(),rocaother.getHeight());
+        rocaother2.setBounds(200,rocaother2.getY(),rocaother2.getWidth(),rocaother2.getHeight());
+        try {//Audio
+            audioStream=AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());
+            clip=AudioSystem.getClip();
+            clip.open(audioStream);            
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  
+        } catch (Exception e) {}
         while(true){
             if (right&&correr) {moveImage(5,50);}
             else if(right){moveImage(3,70);}
@@ -28,7 +51,9 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             else if(up){salto(1, 3, 20);}
             while(interseccion()){caer(2,70);}
             if(getX()>1215){//Condicional de si gano
-                gan.mostrar("Ganaste jugador 1");
+                if(!stop){
+                    gan.mostrar("Ganaste jugador 1");
+                }                
                 break;
             }else if(botcito.getX()>1215){
                 break;
@@ -37,6 +62,33 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             }
         }        
     }//end run
+    synchronized void pausarHilo(){        
+        microSegundos=clip.getMicrosecondPosition();
+        clip.stop();
+        pausar=true;
+    }
+    synchronized void reanudarHilo(){
+        pausar=false;
+        notify();
+        clip.close();
+        try {
+            audioStream=AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());           
+            clip.open(audioStream);            
+            clip.loop(Clip.LOOP_CONTINUOUSLY);    
+            clip.setMicrosecondPosition(microSegundos);            
+        } catch (Exception e) {}
+    }
+    synchronized void stopHilo(){
+        stop=true;
+        btnStart.setEnabled(true);
+        setBounds(1216,getY(),getWidth(),getHeight());
+        System.out.println("Si pasa por aqui");
+        pausar=false;
+        notify();
+        microSegundos=0L;
+        clip.stop();
+        clip.close();
+    }
     public void caer(int power,int time){
         falling=true;
         moveImage(power, time);
@@ -83,7 +135,39 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
                 setBounds(getX()+power,getY(),36,60);
             }
         }     
-        try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}                   
+        try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}
+        try {
+            synchronized(this){
+                while(pausar){
+                    wait();
+                }
+                if(stop){
+                    stop=false;                 
+                }
+            }//end synchronized
+        } catch (Exception e) {}
+        try {
+            synchronized(botcito){
+                while(pausar){
+                    wait();
+                }
+                botcito.notify();
+                if(stop){
+                    stop=false;                  
+                }
+            }//end synchronized
+        } catch (Exception e) {}
+        try {
+            synchronized(botcito2){
+                while(pausar){
+                    wait();
+                }
+                botcito2.notify();
+                if(stop){
+                    stop=false;                  
+                }
+            }//end synchronized
+        } catch (Exception e) {}                 
     }//end moveImage
     public void changeImage(){
         if (falling) {
@@ -106,6 +190,19 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             if(ke.getKeyCode()==KeyEvent.VK_LEFT){left=true;}
             if(ke.getKeyCode()==KeyEvent.VK_SHIFT){correr=true;}
             if(ke.getKeyCode()==KeyEvent.VK_UP){up=true;}
+            if(ke.getKeyCode()==KeyEvent.VK_ENTER){
+                if (bandera) {
+                    pausarHilo();
+                    bandera=false;
+                } else {
+                    reanudarHilo();
+                    bandera=true;
+                }
+            }
+            if(ke.getKeyCode()==KeyEvent.VK_ESCAPE){
+                stopHilo();
+                bandera=true;
+            }
         }
     }//end keyPressed
     public void keyReleased(KeyEvent ke){

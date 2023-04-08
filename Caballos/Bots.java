@@ -33,7 +33,9 @@ public class Bots extends JLabel implements Runnable{
             up=false;
             correr=false;
             if(getX()>1215){//Condicional de si gano
-                gan.mostrar("Gano "+name);
+                if (!player.stop) {
+                    gan.mostrar("Gano "+name);
+                }                
                 break;
             }else if(player.getX()>1215){
                 break;
@@ -88,7 +90,17 @@ public class Bots extends JLabel implements Runnable{
                 setBounds(getX()+power,getY(),36,60);
             }
         }         
-        try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}                   
+        try{Thread.sleep(time);}catch(InterruptedException e){e.printStackTrace();}
+        try {
+            synchronized(this){
+                while(player.pausar){
+                    wait();
+                }
+                if(player.stop){
+                    setBounds(1216,getY(),getWidth(),getHeight());
+                }
+            }//end synchronized
+        } catch (Exception e) {}                    
     }//end moveImage
     public void changeImage(){
         if (falling) {
