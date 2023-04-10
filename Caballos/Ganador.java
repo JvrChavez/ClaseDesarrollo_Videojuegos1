@@ -7,7 +7,7 @@ public class Ganador extends JPanel {
         this.setBackground(Color.BLACK);
         JLabel label=new JLabel(name);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Arial", Font.BOLD, 100));
+        label.setFont(new Font("Arial", Font.BOLD, 80));
         label.setBounds(10,h/2,100,100);
         add(label);
         setVisible(true);
