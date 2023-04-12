@@ -14,7 +14,7 @@ public class Ventana extends JFrame{
         
         JLabel controles=new JLabel("Enter: Pausar/Reanudar     Esc: Stop       Flechas: Moverse    Shift: Correr");
         controles.setForeground(Color.BLACK);
-        controles.setFont(new Font("Arial", Font.BOLD, 30));
+        controles.setFont(new Font("Arial", Font.BOLD, 25));
 
         Human1 man=new Human1("images/human1.png", "images/human2.png", "images/humanjump.png","images/humanfall.png");
         Bots bot=new Bots("images/human011.png", "images/human012.png", "images/humanjump01.png","images/humanfall01.png","corredor 3");
