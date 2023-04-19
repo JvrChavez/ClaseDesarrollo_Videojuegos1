@@ -67,7 +67,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
         microSegundos=clip.getMicrosecondPosition();
         clip.stop();
         pausar=true;
-    }
+    }//end pausarHilo
     synchronized void reanudarHilo(){
         pausar=false;
         notify();
@@ -78,7 +78,7 @@ public class Human1 extends JLabel implements Runnable ,KeyListener{
             clip.loop(Clip.LOOP_CONTINUOUSLY);    
             clip.setMicrosecondPosition(microSegundos);            
         } catch (Exception e) {}
-    }
+    }//end reanudarHilo
     synchronized void stopHilo(){
         stop=true;
         btnStart.setEnabled(true);        
