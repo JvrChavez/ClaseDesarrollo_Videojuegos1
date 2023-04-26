@@ -15,7 +15,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private TextureRegion region;
 	private Sprite miSprite;
 	private float posX=0;
-	private boolean cambio=false;
+	private boolean cambio=false,sDerecha=false,sIzquierda=false;
 	private int width,height,velocidad=100,aceleracion;
 	
 	@Override
@@ -48,7 +48,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			}*/
 			//miSprite.setPosition(posX,miSprite.getY());
 			
-			boolean derecha=Gdx.input.isKeyPressed(Input.Keys.RIGHT);
+			boolean derecha=Gdx.input.isKeyPressed(Input.Keys.RIGHT);			
 			boolean izquierda=Gdx.input.isKeyPressed(Input.Keys.LEFT);
 			float tiempo=Gdx.graphics.getDeltaTime();
 			if (derecha) {
@@ -57,7 +57,8 @@ public class MyGdxGame extends ApplicationAdapter {
 					aceleracion+=1;
 					velocidad+=aceleracion;
 				}
-			} else {				
+				sDerecha=true;
+			} else if(sDerecha){				
 				if (aceleracion>0) {
 					posX+=velocidad*tiempo;	
 					System.out.println("Decremento");								
@@ -67,6 +68,7 @@ public class MyGdxGame extends ApplicationAdapter {
 					System.out.println("no hay");	
 					velocidad=100;
 					aceleracion=0;
+					sDerecha=false;
 				}
 				
 			}
@@ -76,7 +78,8 @@ public class MyGdxGame extends ApplicationAdapter {
 					aceleracion+=1;
 					velocidad+=aceleracion;
 				}
-			} else {				
+				sIzquierda=true;
+			} else if(sIzquierda){				
 				if (aceleracion>0) {
 					posX-=velocidad*tiempo;	
 					System.out.println("Decremento");								
@@ -86,6 +89,7 @@ public class MyGdxGame extends ApplicationAdapter {
 					System.out.println("no hay");	
 					velocidad=100;
 					aceleracion=0;
+					sIzquierda=false;
 				}
 				
 			}
