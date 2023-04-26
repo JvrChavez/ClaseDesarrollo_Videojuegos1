@@ -14,9 +14,9 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Texture img;
 	private TextureRegion region;
 	private Sprite miSprite;
-	private float posX=300;
+	private float posX=0;
 	private boolean cambio=false;
-	private int width,height,velocidad=100;
+	private int width,height,velocidad=100,aceleracion;
 	
 	@Override
 	public void create () {
@@ -26,7 +26,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		img = new Texture("mario1.png");
 		region=new TextureRegion(img,0,0,32,20);
 		miSprite=new Sprite(img,0,0,42,40);
-		miSprite.setPosition(300,350);	
+		miSprite.setPosition(0,350);	
 	}
 	@Override
 	public void render () {
@@ -35,7 +35,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			batch.draw(img, 10, 50,100,75);
 			batch.draw(region,10,170,50,50);
 			miSprite.draw(batch);
-			miSprite.rotate(15);
+			//miSprite.rotate(15);
 			/*if (miSprite.getX()==(width-50)) {
 				cambio=false;
 			}else if(miSprite.getX()==0){
@@ -47,18 +47,51 @@ public class MyGdxGame extends ApplicationAdapter {
 				posX--;
 			}*/
 			//miSprite.setPosition(posX,miSprite.getY());
+			
+			boolean derecha=Gdx.input.isKeyPressed(Input.Keys.RIGHT);
+			boolean izquierda=Gdx.input.isKeyPressed(Input.Keys.LEFT);
+			float tiempo=Gdx.graphics.getDeltaTime();
+			if (derecha) {
+				posX+=velocidad*tiempo;				
+				if (aceleracion<20) {									
+					aceleracion+=1;
+					velocidad+=aceleracion;
+				}
+			} else {				
+				if (aceleracion>0) {
+					posX+=velocidad*tiempo;	
+					System.out.println("Decremento");								
+					aceleracion-=2;
+					velocidad-=aceleracion;
+				}else{
+					System.out.println("no hay");	
+					velocidad=100;
+					aceleracion=0;
+				}
+				
+			}
+			if (izquierda) {
+				posX-=velocidad*tiempo;				
+				if (aceleracion<20) {									
+					aceleracion+=1;
+					velocidad+=aceleracion;
+				}
+			} else {				
+				if (aceleracion>0) {
+					posX-=velocidad*tiempo;	
+					System.out.println("Decremento");								
+					aceleracion-=2;
+					velocidad-=aceleracion;
+				}else{
+					System.out.println("no hay");	
+					velocidad=100;
+					aceleracion=0;
+				}
+				
+			}
+			miSprite.setPosition(posX,miSprite.getY());
 		batch.end();
-		boolean derecha=Gdx.input.isKeyPressed(Input.Keys.RIGHT);
-		boolean izquierda=Gdx.input.isKeyPressed(Input.Keys.LEFT);
-		float tiempo=Gdx.graphics.getDeltaTime();
-		if (derecha) {
-			posX+=velocidad*tiempo;
-		} else if(izquierda){
-			posX-=velocidad*tiempo;
-		}
-		miSprite.setPosition(posX,miSprite.getY());
-	}
-	
+	}	
 	@Override
 	public void dispose () {
 		batch.dispose();
